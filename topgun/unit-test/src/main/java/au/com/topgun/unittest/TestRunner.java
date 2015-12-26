@@ -45,7 +45,7 @@ public class TestRunner {
     public final static String ENCODING = "UTF-8";
     private File propertiesFile;
     private final Properties props;
-    private final TestRunnerAppBase apptoBeTested;
+    private final TestRunnerAppBase appToBeTested;
     private Database db;
     private Connection conn;
     private DataSource datasource;
@@ -57,12 +57,12 @@ public class TestRunner {
      * See defaultTestRunner.properties (for all configurations)
      * 
      * @param propertiesFile
-     * @param apptoBeTested the java application to be tested (if equals null, the properties "RUN.javaclass" will be used)
+     * @param appToBeTested the java application to be tested (if equals null, the properties "RUN.javaclass" will be used)
      * @throws Exception on any error
      */
-    public TestRunner(File propertiesFile, TestRunnerAppBase apptoBeTested, DataSource datasource) throws Exception {
+    public TestRunner(File propertiesFile, TestRunnerAppBase appToBeTested, DataSource datasource) throws Exception {
         this.propertiesFile = propertiesFile;
-        this.apptoBeTested = apptoBeTested;
+        this.appToBeTested = appToBeTested;
         this.datasource = datasource;
         Assert.assertNotNull(this.propertiesFile);
         // Load test properties
@@ -72,9 +72,9 @@ public class TestRunner {
         is.close();
     }
 
-    public TestRunner(Properties props, TestRunnerAppBase apptoBeTested, DataSource datasource) throws Exception {
+    public TestRunner(Properties props, TestRunnerAppBase appToBeTested, DataSource datasource) throws Exception {
         this.props = props;
-        this.apptoBeTested = apptoBeTested;
+        this.appToBeTested = appToBeTested;
         this.datasource = datasource;
         Assert.assertNotNull(this.props);
     }
@@ -98,7 +98,7 @@ public class TestRunner {
             /**
              * Execute RUN.javaclass in .properties
              */
-            testRun = new RunJavaclass(this.apptoBeTested);
+            testRun = new RunJavaclass(this.appToBeTested);
             testRun.run();
             /**
              * Execute RUN.os.cmd in .properties
@@ -373,7 +373,7 @@ public class TestRunner {
             logHorizontalLine();
             log(String.format("Running[%s]", CLASS_NAME));
 
-            TestRunnerAppBase apptoBeTested = appbase;
+            TestRunnerAppBase appToBeTested = appbase;
 
             if (appbase == null) {
                 final String runJavaclassEnabledKey = String.format("RUN.javaclass.enabled");
@@ -386,14 +386,13 @@ public class TestRunner {
                 if (!enabled.toLowerCase().equalsIgnoreCase("true")) {
                     return;
                 }
-                apptoBeTested = null;   // FIXME: to be implemented. Use classloader to load application from "RUN.javaclass"
+                appToBeTested = null;   // FIXME: to be implemented. Use classloader to load application from "RUN.javaclass"
                 log(String.format("%s : This Java class so invoked was taken from .properties", CLASS_NAME));
             } else {
                 log(String.format("%s : This Java class so invoked was programmetically injected (i.e. not from .properties)", CLASS_NAME));
+                log(String.format("%s : Invoking application[%s]. This is the application we are testing against", CLASS_NAME, appToBeTested.getClass().getName()));
+                appToBeTested.run();
             }
-            
-            log(String.format("%s : Invoking application[%s]. This is the application we are testing against", CLASS_NAME, apptoBeTested.getClass().getName()));
-            apptoBeTested.run();
             log(String.format("%s : Application finished running", CLASS_NAME));
         }
     }

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.derby.jdbc.EmbeddedDataSource;
 import org.junit.Assert;
 import org.junit.Before;
@@ -30,6 +31,7 @@ public class TestDatabase {
          */
         System.setProperty("derby.system.home", databaseFolder);
         final File db = new File(databaseFolder);
+        FileUtils.deleteQuietly(db);
         db.mkdirs();
         dataSource = new EmbeddedDataSource();
         dataSource.setCreateDatabase("create");
@@ -37,11 +39,6 @@ public class TestDatabase {
         final Connection conn = dataSource.getConnection();
         Assert.assertNotNull(conn);
         conn.close();
-    }
-    
-    @Test
-    public void test() {
-        
     }
     
     @Test
