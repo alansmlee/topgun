@@ -13,9 +13,8 @@ import org.junit.Test;
 
 import au.com.topgun.common.importexport.FileImportExportFactory.FileExport;
 import au.com.topgun.common.importexport.FileImportExportFactory.FileImport;
-
-import com.rta.tirms.common.test.util.ProjectFolderTestUtil;
-import com.rta.tirms.common.test.util.WorkFolderTestUtil;
+import au.com.topgun.common.test.util.ProjectFolderTestUtil;
+import au.com.topgun.common.test.util.WorkFolderTestUtil;
 
 public class FileImportExportFactoryTest {
 

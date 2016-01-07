@@ -17,7 +17,7 @@ import au.com.topgun.common.database.DBConnection;
 
 public class TestDatabase {
 
-    final String databaseFolder = "generated/db";
+    final String databaseFolder = "generated/db/TestDatabase";
     final String databaseName = "unit-test-DB";
     final String user = "topgun";   // this is same as database schema
     final String password = "password";

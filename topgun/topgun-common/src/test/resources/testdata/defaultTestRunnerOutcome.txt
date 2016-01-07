@@ -1,8 +1,0 @@
-This file is used to test TestRunner.java
-I am using news headline for this test
-1) 21/12/2015 Billions wiped: Apple's 'breathtaking decline'
-2) 21/12/2015 End looms for $150 million Opal card loophole used by Sydney commuters
-3) 21/12/2015 Prince Christian of Denmark rescued by Gold Coast lifeguard Nick Malcolm
-4) 21/12/2015 James Packer resigns as director of Crown Resorts
-5) 21/12/2015 Cyclone on the way for Christmas
-6) 21/12/2015 FARES on NSW trains, buses and ferries could be slashed by up to 50 per cent on some routes as part of proposed changes to public transport ticketing. 

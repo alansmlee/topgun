@@ -22,7 +22,7 @@ import au.com.topgun.common.exception.DataException;
 @RunWith(Arquillian.class)
 public class TestRunnerJUnit {
 
-    final static String databaseFolder = "./generated/db";
+    final static String databaseFolder = "./generated/db/TestRunner";
     final static String databaseName = "unit-test-DB";
     final static String user = "topgun";   // this is same as database schema
     final static String password = "password";
